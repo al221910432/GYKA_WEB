@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+
+
+<div style="background: #fff;">
+<section class="product-details spad" *ngIf="product != null">
+    <div class="container1">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                            src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="{{product.name}}" >
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                
+                <div class="product__details__text">
+                    <h1 style="text-align: initial;">{{product.name}}</h1>
+                    <div class="product__details__rating">
+                        <fa-icon [icon]="star"></fa-icon>
+                        <fa-icon [icon]="star"></fa-icon>
+                        <fa-icon [icon]="star"></fa-icon>
+                        <fa-icon [icon]="star"></fa-icon>
+                        <fa-icon [icon]="star_half"></fa-icon>
+                        <span>(18 reviews)</span>
+                    </div>
+                    <div class="product__details__price">{{product.price | currency}}</div>
+                    <p>{{product.category.name}}</p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <span class="dec qtybtn" (click)="subtractQuantity()">-</span>
+                                <input type="number" [(ngModel)]="quantity">
+                                <span class="inc qtybtn" (click)="plusQuantity()" >+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="primary-btn" (click)="addCart(product)" style="background: rgba(255,69,0, .7);  
+                    border: 1px solid rgba(0,0,0,.1);">Añadir al carrito</a>
+                    <ul>
+                        <li><b>Disponibilidad</b> <span>{{product.quantity}}</span></li>
+                        <li><b>Envio</b> <span>Llega en 2 dias</span></li>
+                        <li><b>Descripcion</b> <p>{{product.description}}</p></li>
+
+
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<section class="related-product">
+    <div class="container1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Productos Relacionados</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of listRelatedProduct">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                        <ul class="featured__item__pic__hover">
+                            
+                            <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}"><fa-icon [icon]="info"></fa-icon></a></li>
+                            <li><a href="javascript:void(0)" (click)="addToCart(product)"><fa-icon [icon]="bag"></fa-icon></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="javascript:void(0)">{{product.name}}</a></h6>
+                        <h5>{{product.price | currency}}</h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</div>

@@ -1,0 +1,112 @@
+<p-toast></p-toast>
+
+
+
+
+
+
+<div style="background-color: #fff;">
+    <h1>Detalles de envio</h1>
+    <div class="container1">
+       
+        <div class="checkout__form">
+            
+            <form action="#">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Nombre<span>*</span></p>
+                                    <input type="text" [(ngModel)]="orderForm.firstname" name="firstname" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Apellido<span>*</span></p>
+                                    <input type="text" [(ngModel)]="orderForm.lastname" name="lastname" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Pais<span>*</span></p>
+                            <input type="text" [(ngModel)]="orderForm.country" name="country" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Direccion<span>*</span></p>
+                            <input type="text" [(ngModel)]="orderForm.address" name="address" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Ciudad<span>*</span></p>
+                            <input type="text" [(ngModel)]="orderForm.town" name="town" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Estado<span>*</span></p>
+                            <input type="text" [(ngModel)]="orderForm.state" name="state" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Codigo Postal<span>*</span></p>
+                            <input type="text" [(ngModel)]="orderForm.postCode" name="postCode" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Telefono<span>*</span></p>
+                                    <input type="text" [(ngModel)]="orderForm.phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Correo<span>*</span></p>
+                                    <input type="text" [(ngModel)]="orderForm.email" name="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="checkout__input__checkbox">
+                            <label for="diff-acc">
+                                Enviar a una direccion diferente?
+                                <input type="checkbox" id="diff-acc">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>-->
+                        <div class="checkout__input">
+                            <p>Notas<span>*</span></p>
+                            <input type="text"
+                                placeholder="Notas acerca de tu orden." [(ngModel)]="orderForm.note" name="note">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Tu Orden</h4>
+                            <div class="checkout__order__products">Productos <span>Total</span></div>
+                            <ul>
+                                <li *ngFor="let item of cartService.items">{{item.name}} <span>{{item.subTotal | currency}}</span></li>
+                            </ul>
+                            <div class="checkout__order__subtotal">Subtotal <span>{{cartService.totalPrice | currency}}</span></div>
+                            <div class="checkout__order__total">Total <span>{{cartService.total | currency }}</span></div>
+                            <p>Favor de verificar  que los datos enviados sean correctos.</p>
+                            <!--<div class="checkout__input__checkbox">
+                                <label for="payment">
+                                    Verificar Pago
+                                    <input type="checkbox" id="payment">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="checkout__input__checkbox">
+                                <label for="paypal">
+                                    Paypal
+                                    <input type="checkbox" id="paypal">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>-->
+                            <div #paypal>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

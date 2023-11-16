@@ -1,0 +1,210 @@
+
+<p-toast></p-toast>
+
+<p-dialog [(visible)]="authModal" [style]="{width: '30vw'}"  [baseZIndex]="10000" [modal]="true" [dismissableMask]="true">
+    <p-tabView>
+        
+        <p-tabPanel header="Acceder">
+            <div class="p-field">
+                <label   for="username">username:  </label>
+                <input [(ngModel)]="Usua"required type="text" pInputText class="w-full" [(ngModel)]="loginForm.username" name="username">
+              </div>
+              <div class="p-field">
+                <label for="password"> password: </label>
+                <input [(ngModel)]="Contra" required  type="password" pPassword class="w-full" [(ngModel)]="loginForm.password" name="password">
+              </div>
+              <div class="p-field mt-3">
+                <button type="submit" style="background: rgba(255,69,0, .8);  
+                border: 1px solid rgba(0,0,0,.1);" pButton (click)="login()">Acceder</button>
+              </div>
+        </p-tabPanel>
+        
+        <p-tabPanel header="Registrarse">
+            <form action="">
+                <div class="p-field">
+                    <label for="username">username  : </label>
+                    <input [(ngModel)]="usernam" required type="text" pInputText class="w-full" [(ngModel)]="registerForm.username" name="username">
+                </div>
+                <div class="p-field">
+                    <label for="email">Email: </label>
+                    <input [(ngModel)]="email" required  type="email" pInputText class="w-full" [(ngModel)]="registerForm.email" name="email">
+                </div>
+                <div class="p-field">
+                    <label for="password">password: </label>
+                    <input [(ngModel)]="password" required type="password" pPassword  class="w-full" [(ngModel)]="registerForm.password" name="password">
+                </div>
+                <div class="p-field mt-3">
+                    <button type="submit" style="background: rgba(255,69,0, .8);  
+                    border: 1px solid rgba(0,0,0,.1);" pButton (click)="register()"> Registrarse</button>
+                </div>
+              </form>
+        </p-tabPanel>
+    </p-tabView>
+</p-dialog>
+
+
+
+<div >
+
+ 
+   <!-- Sticky header -->
+<header class="header-outer">
+	<div class="header-inner responsive-wrapper">
+		<div class="header-logo">
+			<img src="assets/image/GYKATECH0.png"/>
+		</div>
+		<nav class="header-navigation">
+			<a href="/">Home</a>
+			<a href="/blog">Blog</a>
+			<a href="/about">About</a>
+			
+			<button>Menu</button>
+		</nav>
+	
+    <div class="col-lg-3">
+        <div class="header__cart">
+            <ul>
+               <!-- <li><a href="javascript:void(0)" (click)="wishlist.toggle($event)"><fa-icon [icon]="heart"></fa-icon> <span>{{wishlistService.items.length}}</span></a></li>
+                <p-overlayPanel #wishlist>
+                    <ng-template pTemplate>
+                        <div class="listItemInCart">
+                            <ul>
+                                <li *ngFor="let product of wishlistService.items" class="cart-box">
+                                    <div class="cart-box-image p-2">
+                                        <a href="javascript:void(0)" class="block"><img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="" width="80px"></a>
+                                    </div>
+                                    <div class="cart-box-text">
+                                        <a href="javascript:void(0)">{{product.name}}</a>
+                                    </div>
+                                    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" (click)="removeWishList(product)"></button>
+                                </li>
+                            </ul>   
+                        </div>
+                    </ng-template>
+                </p-overlayPanel>-->
+                <li><a href="javascript:void(0)" (click)="cart.toggle($event)"><fa-icon [icon]="bag"></fa-icon> <span>{{cartService.items.length}}</span></a></li>
+                <p-overlayPanel #cart>
+                    <ng-template pTemplate>
+                        <div class="listItemInCart">
+                            <ul>
+                                <li *ngFor="let product of cartService.items" class="cart-box">
+                                    <div class="cart-box-image p-2">
+                                        <a href="javascript:void(0)" class="block"><img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="" width="80px"></a>
+                                    </div>
+                                    <div class="cart-box-text">
+                                        <a href="javascript:void(0)">{{product.name}}</a>
+                                        <div><span>{{product.quantity}} x </span>{{product.price | currency}}</div>
+                                    </div>
+                                    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" (click)="removeFromCart(product)"></button>
+                                </li>
+                            </ul>
+                            <p-divider></p-divider>
+                            <div class="text-center">
+                                <strong>Total: </strong><span class="ml-2">{{cartService.getTotalPrice() | currency}}</span>
+                            </div>
+                            <p-divider></p-divider>
+                            <div class="cart-button">
+                                <button pButton pRipple label="Ir al Carrito" class="w-full p-button-warning" routerLink="cart"></button>
+                            </div>   
+                        </div>
+                    </ng-template>
+                </p-overlayPanel>
+                <li>
+                    <a href="javascript:void(0)" (click)="showAuthForm()" *ngIf="!isLoggedIn"><fa-icon [icon]="userIcon"></fa-icon></a>
+                    <a href="javascript:void(0)" (click)="profile.toggle($event)" *ngIf="isLoggedIn"><fa-icon [icon]="userIcon"></fa-icon></a>
+                    <p-overlayPanel #profile>
+                        <div >
+                            <a class="dropdown-item" href="javascript:void(0)" routerLink="/user" >
+                                <fa-icon [icon]="userIcon"></fa-icon>   
+                                Perfil
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0)" routerLink="my-order">
+                                <fa-icon [icon]="bag"></fa-icon>   
+                                Mis Pedidos
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logout();profile.toggle($event)" >
+                                <fa-icon [icon]="logoutIcon"></fa-icon>
+                                Cerrar
+                            </a>
+                        </div>
+                    </p-overlayPanel>
+                </li>
+                
+
+            </ul>
+        </div>
+    </div>
+</div>
+</header>
+
+
+
+
+
+<router-outlet></router-outlet>
+
+
+
+<footer class="footer spad" style="background: black;
+color: #8a8a8a;
+font-size: 14px;
+padding: 60px 0 20px;">
+    <div class="container1">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about" style="flex: 1;
+                text-align: center;">
+                    <div class="footer__about__logo">
+                        <a href="javascript:void(0)"><img src="assets/image/GYKATECH0.png" width="100px" alt=""></a>
+                    </div>
+                    <ul>
+                        <li style="color: #8a8a8a;">Dirección: Santa María Atarasquillo, Méx.</li>
+                        <li style="color: #8a8a8a;">Telefono: +52 7291398325</li>
+                        <li style="color: #8a8a8a;">Email: popscarrot@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6 style="color: #fff;
+                    margin-bottom: 20px;">Enlaces útiles</h6>
+                    <ul>
+                        <li><a routerLink="/about" href="javascript:void(0) " style="color: #8a8a8a;">Acerca de nosotros</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Compra segura</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Información de entrega</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Politicas de privacidad</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Our Sitemap</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Nuestros servicios</a></li>
+                        <li><a routerLink="/blog" href="javascript:void(0)" style="color: #8a8a8a;">Blog</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Contacto</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+                <div class="footer__widget">
+                    <h6 style="color: #fff;
+                    margin-bottom: 20px;">Únase a nuestro boletín</h6>
+                    <ul>
+                        <li><a routerLink="/about" href="javascript:void(0) " style="color: #8a8a8a;">Facebook</a></li>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Twitter</a></li>
+                 
+                    </ul>
+                    <ul>
+                        <li><a href="javascript:void(0)" style="color: #8a8a8a;">Instagram</a></li>
+                        <li><a routerLink="/blog" href="javascript:void(0)" style="color: #8a8a8a;">Reddit</a></li>
+                     
+                        
+                    </ul>
+                  
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</div>

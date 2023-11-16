@@ -1,0 +1,35 @@
+<div class="container" id="container" style="background-color: orange;">
+	<div class="form-container sign-up-container">
+		<form action="#"#formulario="ngForm">
+			<h1>Crear Cuenta</h1>
+			<input type="text" placeholder="Usuario" [(ngModel)]="registerForm.username" name="username"[(ngModel)]="username" required />
+
+			<div th:if="${#fields.hasErrors('username')}"th:errors="*{username}" >   </div>
+			<input type="email" placeholder="Email" [(ngModel)]="registerForm.email" name="email"[(ngModel)]="email" required />
+			<input type="password" placeholder="Contraseña" [(ngModel)]="registerForm.password" name="password"[(ngModel)]="password" required />
+			<button (click)="register()">Aceptar</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#"#formulario="ngForm">
+			<h1>Acceder</h1>
+			<input type="text" placeholder="Usuario" [(ngModel)]="loginForm.username" name="Usuario"[(ngModel)]="Usua" required />
+			<input type="password" placeholder="Contraseña" [(ngModel)]="loginForm.password" name="Contraseña"[(ngModel)]="Contra" required />
+			<button (click)="login()">Aceptar</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Bienvenido!</h1>
+				<p style="color: white;">Para seguir conectado con nosotros, accede con tu cuenta</p>
+				<button class="ghost" id="signIn" (click)="loginFormChange()">Registrate</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Registrate ahora!</h1>
+				<p style="color: white;">Registrate para acceder a nuestros servicios</p>
+				<button class="ghost" id="signUp" (click)="registerFormChange()">Acceder</button>
+			</div>
+		</div>
+	</div>
+</div>

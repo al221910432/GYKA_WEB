@@ -1,0 +1,103 @@
+<div class="card">
+
+    
+
+    <p-dialog header="Estatus" [(visible)]="displayForm" [style]="{width: '30vw'}" [modal]="true" [transitionOptions]="'.3s'">
+        <form action="">
+
+            <div class="p-field">
+                <label for="status">Estatus del pedido: </label>
+                <select pInputText class="w-full mt-2" [(ngModel)]="categoryForm.status" name="status">
+                    <option value="PEDIDO">Pedido</option>
+                    <option value="ENVIADO">Enviado</option>
+                    <option value="EN CAMINO">En Camino</option>
+                    <option value="RECIBIDO">Recibido</option>  
+                    <option value="RECIBIDO">Rechazado</option>
+                </select>
+            </div>
+
+            <div class="p-field">
+                <label for="username">Dia de entrega: </label>
+                <input type="text" pInputText class="w-full mt-2" [(ngModel)]="categoryForm.diaentrega"  name="diaentrega">
+            </div>
+
+            <div class="p-field">
+                <label for="username">Enviado por: </label>
+                <input type="text" pInputText class="w-full mt-2" [(ngModel)]="categoryForm.diapedido"  name="diapedido">
+            </div>
+
+            <div class="p-field">
+                <label for="username">Dia de confirmacion del pago: </label>
+                <input type="text" pInputText class="w-full mt-2" [(ngModel)]="categoryForm.diapago"  name="diapago">
+            </div>
+
+            <div class="p-field">
+                <label for="username">Dia que se envio el pedido: </label>
+                <input type="text" pInputText class="w-full mt-2" [(ngModel)]="categoryForm.diaenvio"  name="diaenvio">
+            </div>
+
+            <div class="p-field">
+                <label for="username">No. de seguimiento del pedido: </label>
+                <input type="text" pInputText class="w-full mt-2" [(ngModel)]="categoryForm.seguimiento"  name="seguimiento">
+            </div>
+            
+
+
+
+            <div class="p-field mt-3">
+                
+                <button type="submit" pButton (click)="updateCategory()" *ngIf="onUpdate" >Actualizar</button>
+                <button pButton type="button" class="p-button-danger ml-3" (click)="displayForm=false">Cancelar</button>
+            </div>
+        </form>
+    </p-dialog>
+
+    
+    <p-table #dt [value]="listOrder" [rows]="10" [paginator]="true" [globalFilterFields]="['firstname','lastname','address']" [tableStyle]="{'min-width': '75rem'}"
+        [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Administrar Pedidos</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar" />`
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Cliente <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="country">Pais<p-sortIcon field="country"></p-sortIcon></th>
+                <th pSortableColumn="address">Direccion <p-sortIcon field="address"></p-sortIcon></th>
+                <!-- <th pSortableColumn="town">Town/City <p-sortIcon field="town"></p-sortIcon></th>
+                <th pSortableColumn="state">Country/State<p-sortIcon field="state"></p-sortIcon></th> -->
+                <!-- <th pSortableColumn="postcode">Postcode/Zip <p-sortIcon field="postcode"></p-sortIcon></th> -->
+                <th pSortableColumn="phone">Telefono <p-sortIcon field="phone"></p-sortIcon></th>
+                <th pSortableColumn="email">Correo <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="price">Total <p-sortIcon field="price"></p-sortIcon></th>
+                <th style="min-width:10rem">Estado</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+            <tr>
+                <td style="width: 4rem">
+                    <p-tableCheckbox [value]="order"></p-tableCheckbox>
+                </td>
+                <td>{{order.firstname}} {{order.lastname}}</td>
+                <td>{{order.country}}</td>
+                <td>{{order.address}}</td>
+                <td>{{order.phone}}</td>
+                <td>{{order.email}}</td>
+                <td>{{order.totalPrice}}</td>
+                <td>{{order.status}}</td>
+                <td><button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-primary" (click)="onUpdateForm(order.id,order.status,order.diaentrega,order.diapedido,order.diapago,order.diaenvio,order.seguimiento)"></button></td>
+                
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
