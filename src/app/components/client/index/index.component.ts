@@ -98,11 +98,11 @@ export class IndexComponent implements OnInit {
 
 
   checkEmailExists(email: string) {
-    return this.http.get<boolean>(`http://localhost:8080/api/user/check-email-exists/${email}`);
+    return this.http.get<boolean>(`https://gykabackendfinal-production.up.railway.app/api/user/check-email-exists/${email}`);
   }
 
   checkUserExists(username: string) {
-    return this.http.get<boolean>(`http://localhost:8080/api/user/check-username-exists/${username}`);
+    return this.http.get<boolean>(`https://gykabackendfinal-production.up.railway.app/api/user/check-username-exists/${username}`);
   }
   
   

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const CATEGORY_API = "http://localhost:8080/api/category/";
+const CATEGORY_API = "https://gykabackendfinal-production.up.railway.app/api/category/";
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

@@ -28,7 +28,7 @@ describe('CategoryService', () => {
           expect(categories).toEqual(categorias);
         });
       
-        const req = httpMock.expectOne('http://localhost:8080/api/category/');
+        const req = httpMock.expectOne('https://gykabackendfinal-production.up.railway.app/api/category/');
         expect(req.request.method).toBe('GET');
         req.flush(categorias);
       });
